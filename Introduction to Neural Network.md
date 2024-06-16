@@ -3,6 +3,10 @@
 ### **How Neural Networks Work**
 A neural network is a machine learning program, or model, that makes decisions in way that is similar to the human brain, just like how biological neurons work together to reach conclusions.
 
+<p align="center">
+  <img src="https://clevertap.com/wp-content/uploads/2019/04/Neural_Network_Brain_Mimic.jpeg"  width="600"/>
+</p>
+
 Each individual node in a neural network has its own linear regression model, which includes inputs (x), weights (w), a bias (or threshold), and produces an output.
 
 The formula can be represented as:
