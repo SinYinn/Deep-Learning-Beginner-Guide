@@ -1,73 +1,67 @@
-## Neural Network Basics
+## Neural Network Basics 🔑
 
-### How Neural Networks Work
-A neural network is a machine learning program, or model, that makes decisions in a manner similar to the human brain, by using processes that mimic the way biological neurons work together to identify phenomena, weigh options and arrive at conclusions.
+### **How Neural Networks Work**
+A neural network is a machine learning program, or model, that makes decisions in way that is similar to the human brain, just like how biological neurons work together to reach conclusions.
 
-### Types of Neural Networks
-Each individual node has its own linear regression model, composed of input data, weights, a bias (or threshold), and an output. 
+Each individual node has its own linear regression model, composed of input data, weights, a bias (or threshold), and an output.   
+
 The formula would look something like this:
+> ∑wixi + bias = w1x1 + w2x2 + w3x3 + bias
 
-∑wixi + bias = w1x1 + w2x2 + w3x3 + bias
+###  $\color{magenta}{\textbf{\textsf{Bias}}}$
+In non-deep learning context, bias is referred to as the difference between expected value and true value, aka systematic error. It basically is the measurement of how well the model fits the data. In deep learning context, the bias value allows the activation function to be shifted to the left or right to better fit the data. Unlike the conventional bias, it interacts with the output rather than the input value. Moving forward, whenever bias is mentioned, we will clarify if it is the former or the latter meaning.
 
-output = f(x) = 1 if ∑w1x1 + b>= 0; 0 if ∑w1x1 + b < 0
+###  $\color{magenta}{\textbf{\textsf{Weights}}}$
+Once an input layer is determined, weights are assigned. Weights help determine the importance or significance of any given variable, with larger values contributing more significantly to the output.
 
-Once an input layer is determined, weights are assigned. These weights help determine the importance of any given variable, with larger ones contributing more significantly to the output compared to other inputs. All inputs are then multiplied by their respective weights and then summed. Afterward, the output is passed through an activation function, which determines the output. If that output exceeds a given threshold, it “fires” (or activates) the node, passing data to the next layer in the network. This results in the output of one node becoming in the input of the next node. This process of passing data from one layer to the next layer defines this neural network as a feedforward network.
+### $\color{magenta}{\textbf{\textsf{Activation}}}$
+All inputs are then multiplied by their respective weights and then summed. Afterward, the output is passed through an activation function, which determines the output. If that output exceeds a given threshold, it “fires” (or activates) the node, passing data to the next layer in the network. This results in the output of one node becoming in the input of the next node. This process of passing data from one layer to the next layer defines this neural network as a feedforward network.
 
-Let’s break down what one single node might look like using binary values. We can apply this concept to a more tangible example, like whether you should go surfing (Yes: 1, No: 0). The decision to go or not to go is our predicted outcome, or y-hat. Let’s assume that there are three factors influencing your decision-making:
+### $\color{magenta}{\textbf{\textsf{Cost function}}}$
+A cost function, often referred to as loss function quantifies the difference between predicted and actual values, serving as an indicator of how the model has improved. For a model, the ultimate goal is to minimize our cost function to ensure correctness of fit for any given observation. Cost function takes both predicted outputs by the model and actual outputs and calculates how much wrong the model was in its prediction. It outputs a higher number if our predictions differ a lot from the actual values. As the model adjusts its weights and bias, it uses the cost function and reinforcement learning to reach the point of convergence, or the local minimum. 
 
-Are the waves good? (Yes: 1, No: 0)
-Is the line-up empty? (Yes: 1, No: 0)
-Has there been a recent shark attack? (Yes: 0, No: 1)
-Then, let’s assume the following, giving us the following inputs:
+Note: Although cost function and lost function are often used interchangeably, they have different meanings. 
+Cost function refers to the average of loss functions whereby loss functions refer to the error for a single training example.
 
-X1 = 1, since the waves are pumping
-X2 = 0, since the crowds are out
-X3 = 1, since there hasn’t been a recent shark attack
-Now, we need to assign some weights to determine importance. Larger weights signify that particular variables are of greater importance to the decision or outcome.
+### $\color{magenta}{\textbf{\textsf{Back Propagation}}}$
+Backpropagation is the practice of fine-tuning the weights of a neural net based on the error rate (i.e. loss) obtained in the previous epoch (i.e. iteration.) Proper tuning of the weights ensures lower error rates, making the model reliable by increasing its generalization.
 
-W1 = 5, since large swells don’t come around often
-W2 = 2, since you’re used to the crowds
-W3 = 4, since you have a fear of sharks
-Finally, we’ll also assume a threshold value of 3, which would translate to a bias value of –3. With all the various inputs, we can start to plug in values into the formula to get the desired output.
+The process in which the algorithm adjusts its weights is through gradient descent, allowing the model to determine the direction to take to reduce errors (or minimize the cost function). With each training example, the parameters of the model adjust to gradually converge at the minimum.    
 
-Y-hat = (1*5) + (0*2) + (1*4) – 3 = 6
+Backpropagation allows us to calculate and attribute the error associated with each neuron, allowing us to adjust and fit the parameters of the model(s) appropriately.
 
-If we use the activation function from the beginning of this section, we can determine that the output of this node would be 1, since 6 is greater than 0. In this instance, you would go surfing; but if we adjust the weights or the threshold, we can achieve different outcomes from the model. When we observe one decision, like in the above example, we can see how a neural network could make increasingly complex decisions depending on the output of previous decisions or layers.
+### $\color{magenta}{\textbf{\textsf{Forward Propagation}}}$
+Most deep neural networks are feedforward, meaning they flow in one direction only, from input to output. 
+The steps to forward propagation are as follows:
 
-In the example above, we used perceptrons to illustrate some of the mathematics at play here, but neural networks leverage sigmoid neurons, which are distinguished by having values between 0 and 1. Since neural networks behave similarly to decision trees, cascading data from one node to another, having x values between 0 and 1 will reduce the impact of any given change of a single variable on the output of any given node, and subsequently, the output of the neural network.
+1. Getting the weighted sum of inputs of a particular unit using the h(x) function we defined earlier.
+2. Pluck in the values we get from step one into the activation function, we have (f(a)=a, in this example) and using the activation value we get the output of the activation function as the input feature for the connected nodes in the next layer.
 
-As we start to think about more practical use cases for neural networks, like image recognition or classification, we’ll leverage supervised learning, or labeled datasets, to train the algorithm. As we train the model, we’ll want to evaluate its accuracy using a cost (or loss) function. This is also commonly referred to as the mean squared error (MSE). In the equation below,
+Units X0, X1, X2 and Z0 do not have any units connected to them providing inputs. Therefore, the steps mentioned above do not occur in those nodes. However, for the rest of the nodes/units, this is how it all happens throughout the neural net for the first input sample in the training set:
 
-i represents the index of the sample,
-y-hat is the predicted outcome,
-y is the actual value, and
-m is the number of samples.
-𝐶𝑜𝑠𝑡 𝐹𝑢𝑛𝑐𝑡𝑖𝑜𝑛= 𝑀𝑆𝐸=1/2𝑚 ∑129_(𝑖=1)^𝑚▒(𝑦 ̂^((𝑖) )−𝑦^((𝑖) ) )^2
+## $\color{magenta}{\textbf{\textsf{Types of Neural Networks}}}$
+Neural networks can be classified into different types, which are used for different purposes. 
+Common types include:
+1. Perceptron (oldest neural network, well at least according to IBM)
+2. Feedforward neural networks, or multi-layer perceptrons (MLPs)
+- They are comprised of an input layer, a hidden layer or layers, and an output layer. While these neural networks are also commonly referred to as MLPs, it’s important to note that they are actually comprised of sigmoid neurons, not perceptrons, as most real-world problems are nonlinear. Data usually is fed into these models to train them, and they are the foundation for computer vision, natural language processing, and other neural networks.
 
-Ultimately, the goal is to minimize our cost function to ensure correctness of fit for any given observation. As the model adjusts its weights and bias, it uses the cost function and reinforcement learning to reach the point of convergence, or the local minimum. The process in which the algorithm adjusts its weights is through gradient descent, allowing the model to determine the direction to take to reduce errors (or minimize the cost function). With each training example, the parameters of the model adjust to gradually converge at the minimum.  
+3. Convolutional neural networks (CNNs)
+- They are similar to feedforward networks, but they’re usually utilized for image recognition, pattern recognition, and/or computer vision. These networks harness principles from linear algebra, particularly matrix multiplication, to identify patterns within an image.
 
-See this IBM Developer article for a deeper explanation of the quantitative concepts involved in neural networks.
+4. Recurrent neural networks (RNNs)
+- Often involve feedback loop (we love feedbacks dont we). These learning algorithms are primarily leveraged when using time-series data to make predictions about future outcomes, such as stock market predictions or sales forecasting.
 
-Most deep neural networks are feedforward, meaning they flow in one direction only, from input to output. However, you can also train your model through backpropagation; that is, move in the opposite direction from output to input. Backpropagation allows us to calculate and attribute the error associated with each neuron, allowing us to adjust and fit the parameters of the model(s) appropriately.
-Overview of different types of neural networks, such as feedforward neural networks, convolutional neural networks (CNNs), recurrent neural networks (RNNs), and their specific applications.
+## $\color{magenta}{\textbf{\textsf{Deep Learning vs Neural Networks}}}$ 
+Deep Learning and neural networks tend to be used interchangeably in conversation, which can be confusing. The “deep” in deep learning is just referring to the depth of layers in a neural network. A neural network that consists of more than three layers—which would be inclusive of the inputs and the output—can be considered a deep learning algorithm. A neural network that only has two or three layers is just a basic neural network.
 
-### Type of Neural Networks
-Neural networks can be classified into different types, which are used for different purposes. While this isn’t a comprehensive list of types, the below would be representative of the most common types of neural networks that you’ll come across for its common use cases:
-
-The perceptron is the oldest neural network, created by Frank Rosenblatt in 1958.
-
-Feedforward neural networks, or multi-layer perceptrons (MLPs), are what we’ve primarily been focusing on within this article. They are comprised of an input layer, a hidden layer or layers, and an output layer. While these neural networks are also commonly referred to as MLPs, it’s important to note that they are actually comprised of sigmoid neurons, not perceptrons, as most real-world problems are nonlinear. Data usually is fed into these models to train them, and they are the foundation for computer vision, natural language processing, and other neural networks.
-
-Convolutional neural networks (CNNs) are similar to feedforward networks, but they’re usually utilized for image recognition, pattern recognition, and/or computer vision. These networks harness principles from linear algebra, particularly matrix multiplication, to identify patterns within an image.
-
-Recurrent neural networks (RNNs) are identified by their feedback loops. These learning algorithms are primarily leveraged when using time-series data to make predictions about future outcomes, such as stock market predictions or sales forecasting.
-
-Deep Learning and neural networks tend to be used interchangeably in conversation, which can be confusing. As a result, it’s worth noting that the “deep” in deep learning is just referring to the depth of layers in a neural network. A neural network that consists of more than three layers—which would be inclusive of the inputs and the output—can be considered a deep learning algorithm. A neural network that only has two or three layers is just a basic neural network.
-
-### Example Code
+## Example Code
 
 1. **Simple Neural Network**
 2. **Convolutional Neural Network (CNN)**
 
-Reference:
-<link> https://www.ibm.com/topics/neural-networks
+
+## References
+- [Backpropagation in Neural Networks](https://builtin.com/machine-learning/backpropagation-neural-network)
+- [Understanding Cost Function in Machine Learning](https://www.analyticsvidhya.com/blog/2021/02/cost-function-is-no-rocket-science/)
+- [IBM Neural Networks Overview](https://www.ibm.com/topics/neural-networks)
