@@ -5,7 +5,7 @@ The purpose of this repository is to create a short documentary for deep learnin
 - Introduction to Neural Network & Deep Learning
 - Installation instructions ⚙️
 - Scripts to run simple pre-trained models 🗒️
-- Evaluation Methods
+- Evaluation Methods 💭
 - Troubleshooting ⛏️
 - Contributions 🤝
 
