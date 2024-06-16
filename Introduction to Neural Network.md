@@ -3,11 +3,11 @@
 ### **How Neural Networks Work**
 A neural network is a machine learning program, or model, that makes decisions in way that is similar to the human brain, just like how biological neurons work together to reach conclusions.
 
-Each individual node in a neural network has its own linear regression model, which includes inputs \( x_i \), weights \( w_i \), a bias (or threshold), and produces an output.
+Each individual node in a neural network has its own linear regression model, which includes inputs (x), weights (w), a bias (or threshold), and produces an output.
 
 The formula can be represented as:
 
-\[ \sum_{i} w_i x_i + \text{bias} = w_1 x_1 + w_2 x_2 + w_3 x_3 + \text{bias} \]
+> ∑wixi + bias = w1x1 + w2x2 + w3x3 + bias
 
 ###  $\color{magenta}{\textbf{\textsf{Bias}}}$
 In non-deep learning context, bias is referred to as the difference between expected value and true value, aka systematic error. It basically is the measurement of how well the model fits the data. In deep learning context, the bias value allows the activation function to be shifted to the left or right to better fit the data. Unlike the conventional bias, it interacts with the output rather than the input value. Moving forward, whenever bias is mentioned, we will clarify if it is the former or the latter meaning.
